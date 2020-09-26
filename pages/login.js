@@ -35,7 +35,8 @@ function Login() {
 
   async function iniciarSesion() {
     try {
-      await firebase.login(email, password);
+      const usuario = await firebase.login(email, password);
+      console.log(usuario);
       Router.push("/");
     } catch (error) {
       console.error("Hubo un error al ingresar a la cuenta", error.message);

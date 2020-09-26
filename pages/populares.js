@@ -1,15 +1,14 @@
 import React from "react";
 import Layout from "../components/layout/Layout";
 
-
-function Index() {
+function Populares() {
   return (
     <>
       <Layout>
-        <h1>hola</h1>
+        <h1>populares</h1>
       </Layout>
     </>
   );
 }
 
-export default Index;
+export default Populares;

@@ -1,8 +1,7 @@
 import React from "react";
 import Layout from "../components/layout/Layout";
 
-
-function Index() {
+function Login() {
   return (
     <>
       <Layout>
@@ -12,4 +11,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Login;

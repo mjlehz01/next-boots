@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Layout from "../components/layout/Layout";
+import DetallesProducto from "../components/layout/DetallesProducto";
+import { FirebaseContext } from "../firebase";
 
+const Home = () => {
+  const [productos, setProductos] = useState([]);
 
-function Index() {
+  const { firebase } = useContext(FirebaseContext);
+
+  useEffect(() => {
+    const obtenerProductos = () => {
+      firebase.db
+        .collection("productos")
+        .orderBy("creado", "desc")
+        .onSnapshot(manejaronSnapshot);
+    };
+    obtenerProductos();
+  }, []);
+
+  function manejaronSnapshot(snapshot) {
+    const productos = snapshot.docs.map((doc) => {
+      return {
+        id: doc.id,
+        ...doc.data(),
+      };
+    });
+    setProductos(productos);
+  }
   return (
     <>
       <Layout>
-        <h1>hola</h1>
+        <div className="listado-productos">
+          <div className="contenedor">
+            <ul className="bg-white">
+              {productos.map((producto) => (
+                <DetallesProducto key={producto.id} producto={producto} />
+              ))}
+            </ul>
+          </div>
+        </div>
       </Layout>
     </>
   );
-}
+};
 
-export default Index;
+export default Home;

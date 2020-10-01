@@ -23,7 +23,6 @@ const Titulo = styled.a`
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
-  text-transform: uppercase;
 
   :hover {
     cursor: pointer;
@@ -74,6 +73,7 @@ const Votos = styled.div`
   div {
     font-size: 2rem;
   }
+
   p {
     margin: 0;
     font-size: 2rem;
@@ -93,6 +93,7 @@ const DetallesProducto = ({ producto }) => {
     urlimagen,
     votos,
   } = producto;
+
   return (
     <Producto>
       <DescripcionProducto>
@@ -111,7 +112,6 @@ const DetallesProducto = ({ producto }) => {
               <p>{comentarios.length} Comentarios</p>
             </div>
           </Comentarios>
-
           <p>
             Publicado hace:
             {formatDistanceToNow(new Date(creado), { locale: es })}

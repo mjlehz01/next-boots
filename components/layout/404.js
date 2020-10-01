@@ -9,9 +9,9 @@ const Error404 = () => {
         text-align: center;
       `}
     >
-      Producto no Existente
+      No se puede mostrar
     </h1>
   );
 };
 
-export default Error404
+export default Error404;

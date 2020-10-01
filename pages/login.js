@@ -11,16 +11,16 @@ import {
 
 import firebase from "../firebase";
 
+//Validaciones
+import useValidacion from "../hooks/useValidacion";
+import validarIniciarSesion from "../validacion/validarIniciarSesion";
+
 const STATE_INICIAL = {
   email: "",
   password: "",
 };
 
-//Validaciones
-import useValidacion from "../hooks/useValidacion";
-import validarIniciarSesion from "../validacion/validarIniciarSesion";
-
-function Login() {
+const Login = () => {
   const [error, setError] = useState(false);
 
   const {
@@ -35,8 +35,7 @@ function Login() {
 
   async function iniciarSesion() {
     try {
-      const usuario = await firebase.login(email, password);
-      console.log(usuario);
+      await firebase.login(email, password);
       Router.push("/");
     } catch (error) {
       console.error("Hubo un error al ingresar a la cuenta", error.message);
@@ -45,51 +44,54 @@ function Login() {
   }
 
   return (
-    <>
+    <div>
       <Layout>
-        <h1
-          css={css`
-            text-align: center;
-            margin-bottom: 5rem;
-          `}
-        >
-          Iniciar Sesión
-        </h1>
-        <Formulario onSubmit={handleSubmit} noValidate>
-          <Campo>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Tu Correo Electronico"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </Campo>
-          {errores.email && <Error>{errores.email}</Error>}
+        <>
+          <h1
+            css={css`
+              text-align: center;
+              margin-bottom: 5rem;
+            `}
+          >
+            Iniciar Sesión
+          </h1>
+          <Formulario onSubmit={handleSubmit} noValidate>
+            <Campo>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Tu Correo Electronico"
+                name="email"
+                value={email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </Campo>
+            {errores.email && <Error>{errores.email}</Error>}
 
-          <Campo>
-            <label htmlFor="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Tu Contraseña"
-              name="password"
-              value={password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </Campo>
-          {errores.password && <Error>{errores.password}</Error>}
-          {error && <Error>{error}</Error>}
+            <Campo>
+              <label htmlFor="password">Contraseña</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Tu Contraseña"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </Campo>
+            {errores.password && <Error>{errores.password}</Error>}
 
-          <InputSubmit type="submit" value="Iniciar Sesión" />
-        </Formulario>
+            {error && <Error>{error}</Error>}
+
+            <InputSubmit type="submit" value="Iniciar Sesión" />
+          </Formulario>
+        </>
       </Layout>
-    </>
+    </div>
   );
-}
+};
 
 export default Login;

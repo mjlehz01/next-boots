@@ -17,10 +17,12 @@ export const Campo = styled.div`
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
+
   label {
     flex: 0 0 150px;
     font-size: 1.8rem;
   }
+
   input,
   textarea {
     flex: 1;
@@ -39,8 +41,9 @@ export const InputSubmit = styled.input`
   font-size: 1.8rem;
   text-transform: uppercase;
   border: none;
-  font-family: PT Sans, sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 700;
+
   &:hover {
     cursor: pointer;
   }
@@ -50,8 +53,8 @@ export const Error = styled.p`
   background-color: red;
   padding: 1rem;
   font-family: "PT Sans", sans-serif;
-  font-size: 1.4rem;
   font-weight: 700;
+  font-size: 1.4rem;
   color: #fff;
   text-align: center;
   text-transform: uppercase;

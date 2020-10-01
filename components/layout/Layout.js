@@ -67,6 +67,7 @@ const Layout = (props) => {
       </Head>
 
       <Header />
+
       <main>{props.children}</main>
     </>
   );
